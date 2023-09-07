@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.beans.factory.annotation.Autowired
 import com.example.ead.repository.CourseRepository
 import com.example.ead.model.Course
+import java.util.UUID
 
 @RestController
 @RequestMapping("/api/courses")
@@ -22,8 +23,8 @@ class CourseController(@Autowired private val courseRepository : CourseRepositor
     }
 
     @GetMapping("{id}")
-    fun getOne(@PathVariable("id") courseId: Int): ResponseEntity<Course> {
-        val course = courseRepository.findById(courseId.toLong()).orElse(null)
+    fun getOne(@PathVariable("id") courseId: UUID): ResponseEntity<Course> {
+        val course = courseRepository.findById(courseId).orElse(null)
         return if (course != null) ResponseEntity.ok().body(course)
                 else ResponseEntity.notFound().build()
     }

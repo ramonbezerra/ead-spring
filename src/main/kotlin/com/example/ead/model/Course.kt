@@ -5,12 +5,13 @@ import jakarta.persistence.Table
 import jakarta.persistence.Id
 import jakarta.persistence.GenerationType
 import jakarta.persistence.GeneratedValue
+import java.util.UUID
 
 @Entity
 @Table
 data class Course(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long,
+    val id: UUID?,
     val name: String
 )
